@@ -1,0 +1,39 @@
+import { MiddlewareConsumer, Module, Logger } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import appConfig from './config/app.config';
+import databaseConfig from './config/database.config';
+import { TypeOrmConfigService } from './database/typeorm-config.service';
+
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const cookieSession = require('cookie-session');
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: `.env.${process.env.NODE_ENV}`,
+      load: [databaseConfig, appConfig],
+    }),
+    TypeOrmModule.forRootAsync({
+      useClass: TypeOrmConfigService,
+    }),
+  ],
+  controllers: [AppController],
+  providers: [AppService, Logger],
+})
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(
+        cookieSession({
+          keys: ['fasdfsdvcxvczxvcz'], // TODO 나중에 random으로 변경 필요(cookie session 암호화 키)
+        }),
+      )
+      .forRoutes('*'); // global middleware로 적용
+  }
+}
