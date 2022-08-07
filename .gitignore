@@ -38,3 +38,5 @@ lerna-debug.log*
 .env.*
 
 src/entities/board.entity.ts
+ormconfig.*.json
+src/database/migrations

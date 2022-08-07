@@ -3,16 +3,16 @@ POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
-    "email": "test6@test.com",
+    "email": "test@test.com",
     "password": "qwer1234!@#$",
     "provider": "facebook",
     "name": "사용자명",
-    "status": "dormant"
+    "status": "active"
 }
 
 
 ### 사용자 단건 조회
-GET http://localhost:3000/api/v1/users/5
+GET http://localhost:3000/api/v1/users/1
 Content-Type: application/json
 
 
