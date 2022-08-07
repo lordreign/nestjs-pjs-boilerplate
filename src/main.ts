@@ -14,6 +14,7 @@ import {
   WinstonModule,
 } from 'nest-winston';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { RequestInterceptor } from './interceptors/request.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -57,7 +58,7 @@ async function bootstrap() {
   app.enableVersioning({
     type: VersioningType.URI,
   });
-  // app.useGlobalInterceptors(new SerializerInterceptor());
+  app.useGlobalInterceptors(new RequestInterceptor());
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,

@@ -10,8 +10,13 @@ Nestjs boilerplate(Uncompleted)
 3. swagger(/docs)
 4. winston log 적용
   - console, file(development일때는 안남김)
-5. 진행중..
-
+  - service log 적용
+5. 프로젝트 구조(개인취향) 정리
+6. 페이징 처리 구조화
+7. request interceptor 적용
+8. response > 구조화 및 직렬화 처리(@ResponseSerialize(UserDto))
+9. dto custom validation 적용
+  - TODO: 비밀번호 정규식처리 추가 예정
 ```
 
 # Typeorm 관련 명령어
@@ -21,11 +26,4 @@ Nestjs boilerplate(Uncompleted)
 - yarn migration:run:dev > development환경에 migration run  처리
 - yarn migration:revert:dev > development 환경에 migration rever 처리
 - yarn seeds:dev seed > development 환경에 seed데이터 삽입 실행
-```
-
-
-# 삭제할 파일
-```
-src/migrations 하위 파일
-src/entity 하위 파일
 ```

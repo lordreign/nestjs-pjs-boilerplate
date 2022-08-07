@@ -9,6 +9,13 @@ import { TypeOrmConfigService } from './database/typeorm-config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+import { IndexModule } from './modules/index.module';
+import * as winston from 'winston';
+import {
+  utilities as nestWinstonModuleUtilities,
+  WinstonModule,
+} from 'nest-winston';
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const cookieSession = require('cookie-session');
 
@@ -22,6 +29,22 @@ const cookieSession = require('cookie-session');
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService,
     }),
+    WinstonModule.forRoot({
+      transports: [
+        new winston.transports.Console({
+          level: process.env.NODE_ENV === 'production' ? 'info' : 'silly',
+          format: winston.format.combine(
+            winston.format.timestamp({
+              format: 'YYYY-MM-DD HH:mm:ss', // Local time by timezone
+            }),
+            nestWinstonModuleUtilities.format.nestLike('App', {
+              prettyPrint: true,
+            }),
+          ),
+        }),
+      ],
+    }),
+    IndexModule,
   ],
   controllers: [AppController],
   providers: [AppService, Logger],
