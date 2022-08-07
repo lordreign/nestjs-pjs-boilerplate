@@ -8,12 +8,12 @@ export class PagingDto {
   @ApiPropertyOptional({ default: 1, description: '페이지' })
   @Transform(({ value }) => toInt(value, { default: 1, min: 1 }))
   @IsNumber()
-  page: number;
+  page = 1;
 
   @ApiPropertyOptional({ default: 10, description: '페이지 크기' })
   @Transform(({ value }) => toInt(value, { default: 10 }))
   @IsNumber()
-  pageSize: number;
+  pageSize = 10;
 
   @ApiPropertyOptional({ description: '정렬 필드' })
   @IsOptional()
