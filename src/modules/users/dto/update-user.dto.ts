@@ -46,9 +46,11 @@ export class UpdateUserDto {
   provider?: UserProvidersEnum;
 
   @ApiProperty({ description: '소셜 아이디' })
+  @IsOptional()
   socialId?: string | null;
 
   @ApiProperty({ description: '이름' })
+  @IsOptional()
   name?: string | null;
 
   @ApiProperty({ description: '회원상태' })

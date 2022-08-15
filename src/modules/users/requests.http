@@ -3,7 +3,7 @@ POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
-    "email": "test@test.com",
+    "email": "test1@test.com",
     "password": "qwer1234!@#$",
     "provider": "facebook",
     "name": "사용자명",
@@ -17,7 +17,7 @@ Content-Type: application/json
 
 
 ### 사용자 다건 조회
-GET http://localhost:3000/api/v1/users?page=1&pageSize=15&orderField=email&orderBy=DESC&email=test
+GET http://localhost:3000/api/v1/users?page=1&pageSize=15&orderField=email&orderBy=DESC
 Content-Type: application/json
 
 
@@ -28,7 +28,7 @@ Content-Type: application/json
 {
     "id": 1,
     "password": "qwer1234!@#$",
-    "provider": "facebook",
+    "provider": "email",
     "name": "사용자명",
     "status": "dormant"
 }

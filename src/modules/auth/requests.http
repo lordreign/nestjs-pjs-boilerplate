@@ -1,0 +1,13 @@
+### 로그인
+POST http://localhost:3000/api/v1/auth/email/login
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "qwer1234!@#$"
+}
+
+### me
+GET http://localhost:3000/api/v1/auth/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNjYwNTYyNjk4LCJleHAiOjE2NjA1ODQyOTh9.tUasBAlCUAOIlrZNT0LwNdknmtzbS1pmBja4dfKyn44

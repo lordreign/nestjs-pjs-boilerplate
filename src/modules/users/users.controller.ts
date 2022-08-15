@@ -24,7 +24,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { SearchUserPagingDto } from './dto/search-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
-import { UserDto } from './dto/user.dto';
+import { UserRespDto } from './dto/user-resp.dto';
 import { IResponse } from 'src/common/interfaces/response.interface';
 import { ResponseSerialize } from 'src/interceptors/response.interceptor';
 import { PageSupport } from 'src/common/supports/page.support';
@@ -34,7 +34,7 @@ import { PageSupport } from 'src/common/supports/page.support';
   path: 'users',
   version: '1',
 })
-@ResponseSerialize(UserDto)
+@ResponseSerialize(UserRespDto)
 export class UsersController {
   constructor(
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: WinstonLogger,
@@ -46,7 +46,7 @@ export class UsersController {
     description: '사용자 생성 DTO',
     type: CreateUserDto,
   })
-  @ApiCreatedResponse({ description: '유저를 생성한다.', type: UserDto })
+  @ApiCreatedResponse({ description: '유저를 생성한다.', type: UserRespDto })
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() createUserDto: CreateUserDto) {
@@ -60,7 +60,7 @@ export class UsersController {
     required: true,
     description: '사용자 아이디',
   })
-  @ApiCreatedResponse({ type: UserDto })
+  @ApiCreatedResponse({ type: UserRespDto })
   @Get(':id')
   @HttpCode(HttpStatus.OK)
   async findOne(@Param('id') id: number) {
@@ -87,7 +87,7 @@ export class UsersController {
     description: '사용자 수정 DTO',
     type: UpdateUserDto,
   })
-  @ApiCreatedResponse({ type: UserDto })
+  @ApiCreatedResponse({ type: UserRespDto })
   @Put(':id')
   @HttpCode(HttpStatus.OK)
   async update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
